@@ -1,0 +1,20 @@
+.Navigation {
+	box-shadow: 2px 9px 8px 0px rgba(34, 60, 80, 0.2);
+}
+.link {
+	text-decoration: none;
+	color: black;
+	padding: 15px;
+	display: inline-block;
+	font-size: 20px;
+	font-weight: 600;
+	position: relative;
+}
+.link:global(.active) {
+	color: rgb(248, 89, 77);
+}
+
+.link:hover,
+.link:focus {
+	text-decoration: underline;
+}

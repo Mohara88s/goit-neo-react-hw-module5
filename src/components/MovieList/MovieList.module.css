@@ -1,0 +1,12 @@
+.list {
+	padding-left: 30px;
+	list-style: disc;
+	text-decoration: underline;
+	text-decoration-color: rgb(0, 105, 204);
+}
+.list > li {
+	margin-bottom: 2px;
+}
+.list a {
+	color: rgb(0, 105, 204);
+}

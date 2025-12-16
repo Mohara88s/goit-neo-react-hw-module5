@@ -1,0 +1,50 @@
+.MovieDetailsPage {
+	padding: 5px;
+}
+
+.button {
+	display: flex;
+	align-items: center;
+	gap: 3px;
+	width: fit-content;
+	margin-bottom: 5px;
+	padding: 1px 10px;
+	border: 1px solid gray;
+	border-radius: 5px;
+	user-select: none;
+	font-size: 12px;
+	background-color: white;
+	cursor: pointer;
+}
+.button:active {
+	background-color: rgb(0, 105, 204);
+}
+.card {
+	display: flex;
+}
+.card__pic {
+	width: 300px;
+}
+
+.card__info {
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
+	padding: 20px;
+}
+
+.list {
+	padding: 20px;
+	list-style: disc;
+	text-decoration: underline;
+	text-decoration-color: rgb(0, 105, 204);
+}
+.list > li {
+	margin-bottom: 5px;
+}
+.list a {
+	color: rgb(0, 105, 204);
+}
+.list a:active {
+	color: rgb(248, 89, 77);
+}

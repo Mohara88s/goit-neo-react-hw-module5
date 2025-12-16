@@ -1,0 +1,14 @@
+.MovieReviews {
+	padding: 10px;
+}
+.MovieReviews__list {
+	list-style: disc;
+	padding: 10px;
+}
+.MovieReviews__list__item {
+	margin-bottom: 20px;
+}
+.MovieReviews__author {
+	font-weight: 700;
+	margin-bottom: 10px;
+}
