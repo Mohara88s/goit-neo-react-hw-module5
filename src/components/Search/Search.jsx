@@ -1,8 +1,7 @@
-import styles from "./Searchbar.module.css";
-
 import { Field, Form, Formik } from "formik";
+import styles from "./Search.module.css";
 
-export default function Searchbar({ handleSearch }) {
+export default function Search({ handleSearch }) {
 	const onSubmit = (value, actions) => {
 		if (!value.searchValue) return;
 		handleSearch(value.searchValue);

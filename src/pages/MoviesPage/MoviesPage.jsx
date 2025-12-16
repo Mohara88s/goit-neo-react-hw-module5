@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { fetchMoviesByQuery } from "../../services/themoviedb-api";
 import { useLocation, useSearchParams } from "react-router-dom";
-import Searchbar from "../../components/Searchbar/Searchbar";
+import Search from "../../components/Search/Search";
 import { ClipLoader } from "react-spinners";
 import MovieList from "../../components/MovieList/MovieList";
 
@@ -40,7 +40,7 @@ export default function MoviesPage() {
 
 	return (
 		<>
-			<Searchbar handleSearch={handleSearch} />
+			<Search handleSearch={handleSearch} />
 
 			{movies.length > 0 && <MovieList movies={movies} state={location} />}
 
