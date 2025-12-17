@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { fetchMovieReviewsById } from "../../services/themoviedb-api";
 import { useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
+import toast from "react-hot-toast";
 
 import styles from "./MovieReviews.module.css";
 
@@ -9,17 +10,16 @@ export default function MovieReviews() {
 	const { movieId } = useParams();
 	const [reviews, setReviews] = useState([]);
 	const [error, setError] = useState("");
-	const [isLoading, setIsLoading] = useState(false);
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		const getMovieReviews = async () => {
 			try {
-				setIsLoading(true);
-				setError("");
 				const data = await fetchMovieReviewsById(movieId);
 				setReviews(data.results);
 			} catch (error) {
-				setError(error);
+				setError(error.message);
+				toast.error(error.message);
 			} finally {
 				setIsLoading(false);
 			}
@@ -29,7 +29,7 @@ export default function MovieReviews() {
 	}, [movieId]);
 	return (
 		<div className={styles.MovieReviews}>
-			{reviews.length > 0 ? (
+			{reviews.length > 0 && (
 				<ul className={styles.MovieReviews__list}>
 					{reviews.map((el) => (
 						<li key={el.id} className={styles.MovieReviews__list__item}>
@@ -41,7 +41,8 @@ export default function MovieReviews() {
 						</li>
 					))}
 				</ul>
-			) : (
+			)}
+			{!isLoading && reviews.length === 0 && (
 				<p>We don't have any reviews for this movie</p>
 			)}
 			{isLoading && (

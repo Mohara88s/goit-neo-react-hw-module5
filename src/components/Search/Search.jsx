@@ -1,9 +1,10 @@
 import { Field, Form, Formik } from "formik";
+import toast from "react-hot-toast";
 import styles from "./Search.module.css";
 
 export default function Search({ handleSearch }) {
 	const onSubmit = (value, actions) => {
-		if (!value.searchValue) return;
+		if (!value.searchValue) return toast.error("Enter search data");
 		handleSearch(value.searchValue);
 		actions.resetForm();
 	};

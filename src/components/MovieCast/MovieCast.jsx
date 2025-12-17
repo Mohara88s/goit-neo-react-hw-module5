@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { fetchMovieCastById, IMAGE_URL } from "../../services/themoviedb-api";
 import { useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
+import toast from "react-hot-toast";
 
 import styles from "./MovieCast.module.css";
 
@@ -9,17 +10,16 @@ export default function MovieCast() {
 	const { movieId } = useParams();
 	const [cast, setCast] = useState([]);
 	const [error, setError] = useState("");
-	const [isLoading, setIsLoading] = useState(false);
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		const getMovieCast = async () => {
 			try {
-				setIsLoading(true);
-				setError("");
 				const data = await fetchMovieCastById(movieId);
 				setCast(data.cast);
 			} catch (error) {
-				setError(error);
+				setError(error.message);
+				toast.error(error.message);
 			} finally {
 				setIsLoading(false);
 			}
@@ -49,6 +49,9 @@ export default function MovieCast() {
 						</li>
 					))}
 				</ul>
+			)}
+			{!isLoading && cast.length === 0 && (
+				<p>We don't have a cast for this movie</p>
 			)}
 			{isLoading && (
 				<ClipLoader

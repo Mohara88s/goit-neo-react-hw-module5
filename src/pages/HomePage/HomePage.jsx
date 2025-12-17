@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import { fetchTrendingMoviesToday } from "../../services/themoviedb-api";
-import { useLocation } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import MovieList from "../../components/MovieList/MovieList";
+import toast from "react-hot-toast";
 
 import styles from "./HomePage.module.css";
 
 export default function HomePage() {
-	const location = useLocation();
 	const [movies, setMovies] = useState([]);
 	const [error, setError] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +19,8 @@ export default function HomePage() {
 				const data = await fetchTrendingMoviesToday();
 				setMovies(data.results);
 			} catch (error) {
-				setError(error);
+				setError(error.message);
+				toast.error(error.message);
 			} finally {
 				setIsLoading(false);
 			}
@@ -32,7 +32,7 @@ export default function HomePage() {
 	return (
 		<div className={styles.HomePage}>
 			<h2>Trending today</h2>
-			{movies.length > 0 && <MovieList movies={movies} state={location} />}
+			{movies.length > 0 && <MovieList movies={movies} />}
 			{isLoading && (
 				<ClipLoader
 					color="#1976d2"

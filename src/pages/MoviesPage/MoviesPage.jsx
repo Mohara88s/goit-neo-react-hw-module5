@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { fetchMoviesByQuery } from "../../services/themoviedb-api";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import Search from "../../components/Search/Search";
 import { ClipLoader } from "react-spinners";
 import MovieList from "../../components/MovieList/MovieList";
+import toast from "react-hot-toast";
 
 export default function MoviesPage() {
-	const location = useLocation();
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [movies, setMovies] = useState([]);
 	const [error, setError] = useState("");
@@ -23,7 +23,8 @@ export default function MoviesPage() {
 				const data = await fetchMoviesByQuery(searchParams.get("query"));
 				setMovies(data.results);
 			} catch (error) {
-				setError(error);
+				setError(error.message);
+				toast.error(error.message);
 			} finally {
 				setIsLoading(false);
 			}
@@ -42,7 +43,7 @@ export default function MoviesPage() {
 		<>
 			<Search handleSearch={handleSearch} />
 
-			{movies.length > 0 && <MovieList movies={movies} state={location} />}
+			{movies.length > 0 && <MovieList movies={movies} />}
 
 			{isLoading && (
 				<ClipLoader
