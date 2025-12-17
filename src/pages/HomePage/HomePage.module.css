@@ -1,3 +1,6 @@
-.HomePage h2 {
+.HomePage {
+	padding-left: 10px;
+}
+.HomePage h1 {
 	padding: 20px 0;
 }

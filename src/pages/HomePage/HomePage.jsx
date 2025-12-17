@@ -31,7 +31,7 @@ export default function HomePage() {
 
 	return (
 		<div className={styles.HomePage}>
-			<h2>Trending today</h2>
+			<h1>Trending today</h1>
 			{movies.length > 0 && <MovieList movies={movies} />}
 			{isLoading && (
 				<ClipLoader
